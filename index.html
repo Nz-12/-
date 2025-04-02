@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мебел Дизайн M</title>
+  <style>
+    /* Reset & Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 20px 0;
+    }
+    .container {
+      width: 90%;
+      margin: auto;
+      overflow: hidden;
+    }
+    /* Navigation Bar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #575757;
+    }
+    /* Sections */
+    section {
+      display: none;
+      padding: 20px 0;
+      background: #fff;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+    section.active {
+      display: block;
+    }
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    p {
+      margin-bottom: 10px;
+    }
+    /* Home Page Styles */
+    #home {
+      text-align: center;
+      padding: 50px 20px;
+      background: url('https://via.placeholder.com/1200x400?text=Furniture+Store') no-repeat center/cover;
+      color: #fff;
+      border-radius: 4px;
+    }
+    #home h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    /* Products Page Styles */
+    #products {
+      text-align: center;
+    }
+    .product-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .product-container img {
+      width: 100%;
+      border-radius: 4px;
+    }
+    .btn {
+      position: absolute;
+      top: 50%;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      font-size: 18px;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      user-select: none;
+    }
+    .btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+    .prev {
+      left: 10px;
+    }
+    .next {
+      right: 10px;
+    }
+    /* About Us Page Styles */
+    #about {
+      padding: 20px;
+    }
+    #about .content {
+      margin-bottom: 50px;
+    }
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 4px;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        display: block;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <h1>Мебел Дизайн M</h1>
+        </div>
+        <div class="nav-links">
+          <a href="#" onclick="showSection('home')">Начало</a>
+          <a href="#" onclick="showSection('products')">Мека Мебел</a>
+          <a href="#" onclick="showSection('about')">За нас</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Home Section -->
+    <section id="home" class="active">
+      <h1>Добре дошли до Мебел Дизайн M</h1>
+    </section>
+
+      <h2>Нашите представени продукти</h2>
+      <div class="product-container">
+        <img id="productImage" src="https://via.placeholder.com/600x400?text=Product+1" alt="Product Image">
+        <button class="btn prev" onclick="prevImage()">&#10094;</button>
+        <button class="btn next" onclick="nextImage()">&#10095;</button>
+      </div>
+      <p id="productDesc">Модерен стол</p>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+      <div class="content">
+        <h2>За нас</h2>
+        <p>We are a team of passionate developers and designers dedicated to bringing you the best in furniture aesthetics and functionality. Our goal is to merge modern technology with timeless design to create pieces that not only look beautiful but also provide exceptional comfort and durability.</p>
+        <p>Founded in 2025, our company has quickly grown into a trusted name in the furniture industry, offering a wide range of products from bespoke pieces to mass-produced classics.</p>
+      </div>
+      <!-- Footer for Contacts -->
+      <footer>
+        <h3>Свържете се с нас</h3>
+        <p>Email: mebeldizain.m@abv.bg</p>
+        <p>Phone: +3598 8898 3293</p>
+        <p>Address: Войнеговци, България</p>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    // Navigation Section Switching
+    function showSection(id) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+
+    // JavaScript for Product Image Swapping
+    const images = [
+      { src: 'https://via.placeholder.com/600x400?text=Product+1', desc: 'Удобен фотьойл;'},
+      { src: 'https://via.placeholder.com/600x400?text=Product+2', desc: 'Елегантен диван'},
+      { src: 'https://via.placeholder.com/600x400?text=Product+3', desc: 'Бутикови,тапицирани легла'}
+    ];
+    let currentImageIndex = 0;
+    const productImage = document.getElementById('productImage');
+    const productDesc = document.getElementById('productDesc');
+
+    function updateProduct() {
+      productImage.src = images[currentImageIndex].src;
+      productDesc.textContent = images[currentImageIndex].desc;
+    }
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % images.length;
+      updateProduct();
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+      updateProduct();
+    }
+  </script>
+</body>
+</html>
+
+    
